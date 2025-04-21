@@ -404,12 +404,116 @@
                             <p class="member-role">Модер/Ветеран</p>
                         </div>
                     </div>
-                    <div class="member-card">
-                        <img src="images\clan.png" alt="Участник 4" class="member-avatar">
+                    <div class="member-card all-members-card" onclick="openMembersModal()">
+                        <img src="https://via.placeholder.com/300" alt="Все участники" class="member-avatar">
                         <div class="member-info">
-                            <h3 class="member-name">Остальные участники</h3>
-                            <p class="member-role">Участники</p>
+                            <h3 class="member-name">Все участники</h3>
+                            <p class="member-role">Показать полный список</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Модальное окно (добавьте перед закрывающим </body>) -->
+            <div id="membersModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeMembersModal()">&times;</span>
+                    <h2>Полный список участников</h2>
+                    <div class="full-members-list">
+                        <!-- Здесь будет динамически загружаемый список -->
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                /* Стили для модального окна */
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.8);
+                }
+                
+                .modal-content {
+                    background-color: #1e1e1e;
+                    margin: 5% auto;
+                    padding: 30px;
+                    border-radius: 10px;
+                    max-width: 800px;
+                    position: relative;
+                }
+                
+                .close {
+                    color: #aaa;
+                    font-size: 28px;
+                    font-weight: bold;
+                    position: absolute;
+                    right: 20px;
+                    top: 10px;
+                    cursor: pointer;
+                }
+                
+                .close:hover {
+                    color: #fff;
+                }
+                
+                .full-members-list {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    gap: 20px;
+                    margin-top: 20px;
+                }
+                
+                .all-members-card {
+                    background: linear-gradient(135deg, #6200ea, #03dac6);
+                    cursor: pointer;
+                }
+                
+                .all-members-card:hover {
+                    transform: scale(1.05);
+                }
+            </style>
+            
+            <script>
+                function openMembersModal() {
+                    document.getElementById('membersModal').style.display = 'block';
+                    
+                    // Здесь можно добавить загрузку данных через AJAX или использовать статичный список
+                    const members = [
+                        {name: "Игрок 1", role: "Основатель", avatar: "https://via.placeholder.com/150"},
+                        {name: "Игрок 2", role: "Ветеран", avatar: "https://via.placeholder.com/150"},
+                        // Добавьте остальных участников
+                    ];
+                    
+                    let html = '';
+                    members.forEach(member => {
+                        html += `
+                            <div class="modal-member-card">
+                                <img src="${member.avatar}" alt="${member.name}">
+                                <h4>${member.name}</h4>
+                                <p>${member.role}</p>
+                            </div>
+                        `;
+                    });
+                    
+                    document.querySelector('.full-members-list').innerHTML = html;
+                }
+                
+                function closeMembersModal() {
+                    document.getElementById('membersModal').style.display = 'none';
+                }
+                
+                // Закрытие при клике вне окна
+                window.onclick = function(event) {
+                    if (event.target == document.getElementById('membersModal')) {
+                        closeMembersModal();
+                    }
+                }
+            </script>
                     </div>
                 </div>
             </div>
