@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRK62 | Игровой клаан</title>
+    <style>
+        :root {
+            --primary: #6200ea;
+            --secondary: #03dac6;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #1e1e1e;
+            --accent: #bb86fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .members-grid,
+        .staff-grid,
+        .rules-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+            justify-content: center;
+            gap: 30px;
+
+        }
+
+        .member-card,
+        .staff-card {
+            background-color: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .member-card:hover,
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-avatar,
+        .staff-avatar {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .member-info,
+        .staff-info {
+            padding: 20px;
+        }
+
+        .member-name,
+        .staff-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+
+        .member-role,
+        .staff-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .rule-item {
+            background-color: var(--gray);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .rule-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .rule-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: var(--gray);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .discord-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .discord-link:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .members-grid,
+            .staff-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">MRK<span>62</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="tab-link" data-tab="members">Участники</a></li>
+                        <li><a href="#" class="tab-link" data-tab="staff">Администрация</a></li>
+                        <li><a href="#" class="tab-link" data-tab="rules">Правила</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать в клан MRK62</h1>
+            <p>Мы - сплочённое сообщество игроков, стремящихся к развитию и достижению вершин в игровом мире.
+                Присоединяйся к нам!</p>
+            <a href="#" class="btn">Присоединиться</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div id="members" class="tab-content active">
+                <h2 class="section-title">Участники</h2>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/300" alt="Участник 1" class="member-avatar">
+                        <div class="member-info">
+                            <h3 class="member-name">Игрок 1</h3>
+                            <p class="member-role">Основатель</p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/300" alt="Участник 2" class="member-avatar">
+                        <div class="member-info">
+                            <h3 class="member-name">Игрок 2</h3>
+                            <p class="member-role">Ветеран</p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/300" alt="Участник 3" class="member-avatar">
+                        <div class="member-info">
+                            <h3 class="member-name">Игрок 3</h3>
+                            <p class="member-role">Ветеран</p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/300" alt="Участник 4" class="member-avatar">
+                        <div class="member-info">
+                            <h3 class="member-name">Игрок 4</h3>
+                            <p class="member-role">Участник</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="staff" class="tab-content">
+                <h2 class="section-title">Администрация</h2>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <a href="https://steamcommunity.com/id/myrchikof/" target="_blank" style="text-decoration: none;">
+                            <img src="images\аваа1.jpg" alt="myrch1k" class="staff-avatar">
+                            <div class="staff-info">
+                                <h3 class="staff-name">myrch1k</h3>
+                                <p class="staff-role">Главный администратор</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="staff-card">
+                        <a href="https://steamcommunity.com/id/koko_K" target="_blank" style="text-decoration: none;">
+                            <img src="images\аваа3.jpg" alt="koko" class="staff-avatar">
+                            <div class="staff-info">
+                                <h3 class="staff-name">koko</h3>
+                                <p class="staff-role">Администратор</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="staff-card">
+                        <a href="https://steamcommunity.com/profiles/76561199444146769" target="_blank" style="text-decoration: none;">
+                            <img src="images/аваа2.jpg" alt="rilUnreal" class="staff-avatar">
+                            <div class="staff-info">
+                                <h3 class="staff-name">rilUnreal</h3>
+                                <p class="staff-role">Администратор</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- <div class="staff-card">
+                        <img src="https://via.placeholder.com/300" alt="Модератор 1" class="staff-avatar">
+                        <div class="staff-info">
+                            <h3 class="staff-name">Модератор 1</h3>
+                            <p class="staff-role">Модератор</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div id="rules" class="tab-content">
+                <h2 class="section-title">Правила</h2>
+                <div class="rules-list">
+                    <div class="rule-item">
+                        <h3 class="rule-title">1. Уважение</h3>
+                        <p class="rule-desc">Все участники клана обязаны уважительно относиться друг к другу.
+                            Оскорбления, дискриминация и токсичное поведение недопустимы.</p>
+                    </div>
+                    <div class="rule-item">
+                        <h3 class="rule-title">2. Активность</h3>
+                        <p class="rule-desc">Мы ожидаем от участников регулярной активности в играх и на наших
+                            платформах. Длительное отсутствие без предупреждения может привести к исключению.</p>
+                    </div>
+                    <div class="rule-item">
+                        <h3 class="rule-title">3. Честная игра</h3>
+                        <p class="rule-desc">Использование читов, багов и других нечестных способов игры строго
+                            запрещено. Нарушители будут немедленно исключены из клана.</p>
+                    </div>
+                    <div class="rule-item">
+                        <h3 class="rule-title">4. Командная работа</h3>
+                        <p class="rule-desc">Мы ценим командную игру и взаимопомощь. Эгоистичное поведение, мешающее
+                            команде, не приветствуется.</p>
+                    </div>
+                    <div class="rule-item">
+                        <h3 class="rule-title">5. Дискорд</h3>
+                        <p class="rule-desc">Все участники должны состоять в нашем Discord-сервере и следить за важными
+                            объявлениями.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">MRK62</div>
+            <div class="social-links">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                <a href="https://discord.gg/HQxTrKdmth" target="_blank" style="color: #ffffff;"><i
+                        class="fab fa-discord"></i></a>
+                <a href="https://steamcommunity.com/groups/mrk62" target="_blank" style="color: #ffffff;"><i
+                        class="fab fa-steam"></i></a>
+                <a href="https://www.youtube.com/@MRK62-in5om" target="_blank" style="color: #ffffff;"><i
+                        class="fab fa-youtube"></i></a>
+                <a href="https://www.twitch.tv/myrchik32" target="_blank" style="color: #ffffff;"><i
+                        class="fab fa-twitch"></i></a>
+            </div>
+            <a href="https://discord.gg/HQxTrKdmth" class="discord-link">Присоединяйтесь к нашему Discord-серверу</a>
+            <p style="margin-top: 20px; color: rgba(255, 255, 255, 0.5);">© 2023 MRK62. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.tab-link');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Удаляем активный класс у всех вкладок и ссылок
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+
+                    tabLinks.forEach(tabLink => {
+                        tabLink.parentElement.classList.remove('active');
+                    });
+
+                    // Добавляем активный класс к текущей вкладке и ссылке
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    this.parentElement.classList.add('active');
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
