@@ -590,6 +590,108 @@
             }
         }
     </style>
+    <style>
+        /* Стили для вкладки "Сообщество" */
+        .community-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .widgets-column,
+        .leaderboard-column {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .discord-widget {
+            margin-bottom: 30px;
+        }
+
+        .leaderboard-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            color: #bbb;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tab-button.active {
+            color: #03dac6;
+            border-bottom: 2px solid #03dac6;
+            margin-bottom: -2px;
+        }
+
+        .leaderboard {
+            display: none;
+        }
+
+        .leaderboard.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player img {
+            border-radius: 50%;
+        }
+
+        .clan-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-card i {
+            font-size: 24px;
+            color: #bb86fc;
+        }
+
+        @media (max-width: 1200px) {
+            .community-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style> <!-- конец стилей для сообщества -->
 </head>
 
 <body>
@@ -604,6 +706,7 @@
                         <li><a href="#" class="tab-link" data-tab="rules">Правила</a></li>
                         <li><a href="#" class="tab-link" data-tab="about">О клане</a></li>
                         <li><a href="#" class="tab-link" data-tab="news">Новости</a></li>
+                        <li><a href="#" class="tab-link" data-tab="community">Сообщество</a></li>
                     </ul>
                 </nav>
             </div>
@@ -822,8 +925,7 @@
                         </div>
                         <h3 class="news-title">Запуск сайта</h3>
                         <div class="news-content">
-                            <img src="images/clan.png"
-                                alt="Победа на турнире" class="news-image">
+                            <img src="images/clan.png" alt="Победа на турнире" class="news-image">
                             <p>мы решили открыть свой сайт с информацией для новых участников(ну или по приколу)...</p>
                         </div>
                         <a href="#" class="news-read-more">Читать далее →</a>
@@ -837,10 +939,10 @@
                         </div>
                         <h3 class="news-title">Новый партнёр - SteamScam Wallet</h3>
                         <div class="news-content">
-                            <img src="images/ss.jpg" alt="Новый партнёр"
-                                class="news-image">
-                            <p>Мы рады объявить о начале сотрудничества с компанией SteamScam Wallet, которая будет помогать с организацией розыгрышей
-                             и проведения турниров внутри клана...</p>
+                            <img src="images/ss.jpg" alt="Новый партнёр" class="news-image">
+                            <p>Мы рады объявить о начале сотрудничества с компанией SteamScam Wallet, которая будет
+                                помогать с организацией розыгрышей
+                                и проведения турниров внутри клана...</p>
                         </div>
                         <a href="#" class="news-read-more">Читать далее →</a>
                     </div>
@@ -853,8 +955,7 @@
                         </div>
                         <h3 class="news-title">Открыт набор новых участников</h3>
                         <div class="news-content">
-                            <img src="images/clan.png" alt="Набор участников"
-                                class="news-image">
+                            <img src="images/clan.png" alt="Набор участников" class="news-image">
                             <p>Мы объявляем открытый набор в наш клан! Если ты хочешь стать частью дружной команды,
                                 заполни анкету...</p>
                         </div>
@@ -866,6 +967,96 @@
                     <a href="#" class="btn">Все новости</a>
                 </div>
             </div>
+            <!-- Вкладка "Сообщество" -->
+            <div id="community" class="tab-content">
+                <div class="community-container">
+
+                    <!-- Левая колонка - Виджеты -->
+                    <div class="widgets-column">
+                        <h2><i class="fas fa-users"></i> Наше сообщество</h2>
+
+                        <!-- Discord-виджет -->
+                        <div class="discord-widget">
+                            <iframe src="https://discord.com/widget?id=1134593778305486949&theme=dark" width="100%"
+                                height="350" allowtransparency="true" frameborder="0"
+                                sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                            </iframe>
+                            <a href="https://discord.gg/HQxTrKdmth" class="btn discord-btn">
+                                <i class="fab fa-discord"></i> Присоединиться
+                            </a>
+                        </div>
+
+                        <!-- Twitch-виджет -->
+                        <div class="twitch-widget">
+                            <h3><i class="fab fa-twitch"></i> Последний стрим</h3>
+                            <iframe src="https://player.twitch.tv/?channel=myrchik32&parent=https://mrk.yhub.net" frameborder="0"
+                                allowfullscreen="true" scrolling="no" height="300" width="100%">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка - Топ игроков -->
+                    <div class="leaderboard-column">
+                        <h2><i class="fas fa-trophy"></i> Топ игроков</h2>
+
+                        <div class="leaderboard-tabs">
+                            <button class="tab-button active" onclick="openLeaderboardTab('monthly')">Месяц</button>
+                            <button class="tab-button" onclick="openLeaderboardTab('alltime')">Все время</button>
+                        </div>
+
+                        <!-- Ежемесячный топ -->
+                        <div id="monthly-leaderboard" class="leaderboard active">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Игрок</th>
+                                        <th>Рейтинг</th>
+                                        <th>K/D</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="player">
+                                            <img src="https://via.placeholder.com/40" alt="ProPlayer">
+                                            <span>ProPlayer</span>
+                                        </td>
+                                        <td>2450</td>
+                                        <td>2.1</td>
+                                    </tr>
+                                    <!-- Добавьте больше игроков -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Общий топ -->
+                        <div id="alltime-leaderboard" class="leaderboard">
+                            <table>
+                                <!-- Аналогичная таблица -->
+                            </table>
+                        </div>
+
+                        <!-- Статистика клана -->
+                        <div class="clan-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <h3>15</h3>
+                                    <p>Турниров за месяц</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <h3>87%</h3>
+                                    <p>Побед в матчах</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- конец вкладки сообщество -->
         </div>
     </section>
 
@@ -956,6 +1147,19 @@
         }
     </script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Переключение между таблицами
+        function openLeaderboardTab(tabName) {
+            const tabs = document.querySelectorAll('.leaderboard');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName + '-leaderboard').classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
