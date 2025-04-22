@@ -496,6 +496,100 @@
             transform: scale(1.05);
         }
     </style>
+    <style>
+        /* Стили для вкладки "Новости" */
+        .news-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .news-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background-color: rgba(98, 0, 234, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .news-date {
+            color: #bb86fc;
+            font-size: 14px;
+        }
+
+        .news-category {
+            background-color: #03dac6;
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .news-title {
+            padding: 15px 20px 0;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .news-content {
+            padding: 15px 20px;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .news-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .news-read-more {
+            display: inline-block;
+            padding: 0 20px 15px;
+            color: #bb86fc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .news-read-more:hover {
+            text-decoration: underline;
+        }
+
+        .all-news-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .news-feed {
+                grid-template-columns: 1fr;
+            }
+
+            .news-image {
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -509,6 +603,7 @@
                         <li><a href="#" class="tab-link" data-tab="staff">Администрация</a></li>
                         <li><a href="#" class="tab-link" data-tab="rules">Правила</a></li>
                         <li><a href="#" class="tab-link" data-tab="about">О клане</a></li>
+                        <li><a href="#" class="tab-link" data-tab="news">Новости</a></li>
                     </ul>
                 </nav>
             </div>
@@ -575,7 +670,8 @@
                 <h2 class="section-title">Администрация</h2>
                 <div class="staff-grid">
                     <div class="staff-card">
-                        <a href="https://steamcommunity.com/id/myrchikof/" target="_blank" style="text-decoration: none;">
+                        <a href="https://steamcommunity.com/id/myrchikof/" target="_blank"
+                            style="text-decoration: none;">
                             <img src="images\аваа1.jpg" alt="myrch1k" class="staff-avatar">
                             <div class="staff-info">
                                 <h3 class="staff-name">myrch1k</h3>
@@ -642,16 +738,18 @@
                     <!-- Блок с информацией о клане -->
                     <div class="clan-info">
                         <h3>MRK62 - больше чем просто клан</h3>
-                        <p>Мы - сплочённое сообщество игроков, основанное в 2018 году. Наш клан объединяет людей,
-                            для которых игры - это не просто развлечение, а стиль жизни.</p>
+                        <p>Мы - сплочённое сообщество игроков по CS2, основанное в 2023 году. Наш клан объединяет людей,
+                            для которых игры - это не просто развлечение, а стиль жизни. Хоть пока участников мало мы
+                            стремимся к большему количеству
+                            активных игроков и этим игроком можешь стать ты! </p>
 
                         <div class="clan-stats">
                             <div class="stat-item">
-                                <h4>50+</h4>
+                                <h4>10+</h4>
                                 <p>Активных участников</p>
                             </div>
                             <div class="stat-item">
-                                <h4>15</h4>
+                                <h4>0</h4>
                                 <p>Турниров выиграно</p>
                             </div>
                             <div class="stat-item">
@@ -666,7 +764,6 @@
                             <li>Совершенствование навыков</li>
                             <li>Командная работа</li>
                             <li>Честная игра</li>
-                            <li>Поддержка новых игроков</li>
                         </ul>
                     </div>
 
@@ -677,13 +774,12 @@
 
                         <div class="partner-grid">
                             <div class="partner-card">
-                                <img src="https://via.placeholder.com/150x80?text=GamingZone" alt="GamingZone"
-                                    class="partner-logo">
-                                <h4>GamingZone</h4>
-                                <p>Официальный игровой сервер</p>
+                                <img src="images/clan.png" alt="GamingZone" class="partner-logo">
+                                <h4>SteamScam wallet</h4>
+                                <p>Магазин с пополнением аккаунтов Steam</p>
                             </div>
 
-                            <div class="partner-card">
+                            <!-- <div class="partner-card">
                                 <img src="https://via.placeholder.com/150x80?text=ESPORTS" alt="eSportsPro"
                                     class="partner-logo">
                                 <h4>eSportsPro</h4>
@@ -702,15 +798,72 @@
                                     class="partner-logo">
                                 <h4>StreamHub</h4>
                                 <p>Партнёр по стримингу</p>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="become-partner">
                             <p>Хотите стать партнёром?</p>
                             <br>
-                            <a href="#" class="btn">Связаться с нами</a>
+                            <a href="https://discord.gg/HQxTrKdmth" class="btn" target="_blank">Связаться с нами</a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- Вкладка "Новости" -->
+            <div id="news" class="tab-content">
+                <h2 class="section-title">Последние новости</h2>
+
+                <div class="news-feed">
+                    <!-- Новость 1 -->
+                    <div class="news-card">
+                        <div class="news-header">
+                            <span class="news-date">22.04.2025</span>
+                            <span class="news-category">Сайт</span>
+                        </div>
+                        <h3 class="news-title">Запуск сайта</h3>
+                        <div class="news-content">
+                            <img src="https://via.placeholder.com/400x200?text=Победа+на+турнире"
+                                alt="Победа на турнире" class="news-image">
+                            <p>мы решили открыть свой сайт с информацией для новых участников(ну или по приколу)...</p>
+                        </div>
+                        <a href="#" class="news-read-more">Читать далее →</a>
+                    </div>
+
+                    <!-- Новость 2 -->
+                    <div class="news-card">
+                        <div class="news-header">
+                            <span class="news-date">21.04.2025</span>
+                            <span class="news-category">Партнёрство</span>
+                        </div>
+                        <h3 class="news-title">Новый партнёр - SteamScam Wallet</h3>
+                        <div class="news-content">
+                            <img src="https://via.placeholder.com/400x200?text=Новый+партнер" alt="Новый партнёр"
+                                class="news-image">
+                            <p>Мы рады объявить о начале сотрудничества с компанией SteamScam Wallet, которая будет помогать с организацией розыгрышей
+                             и проведения турниров внутри клана...</p>
+                        </div>
+                        <a href="#" class="news-read-more">Читать далее →</a>
+                    </div>
+
+                    <!-- Новость 3 -->
+                    <div class="news-card">
+                        <div class="news-header">
+                            <span class="news-date">27.02.2025</span>
+                            <span class="news-category">Набор</span>
+                        </div>
+                        <h3 class="news-title">Открыт набор новых участников</h3>
+                        <div class="news-content">
+                            <img src="https://via.placeholder.com/400x200?text=Набор+участников" alt="Набор участников"
+                                class="news-image">
+                            <p>Мы объявляем открытый набор в наш клан! Если ты хочешь стать частью дружной команды,
+                                заполни анкету...</p>
+                        </div>
+                        <a href="#" class="news-read-more">Читать далее →</a>
+                    </div>
+                </div>
+
+                <div class="all-news-link">
+                    <a href="#" class="btn">Все новости</a>
                 </div>
             </div>
         </div>
